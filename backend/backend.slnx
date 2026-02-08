@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/Volunteer.API/Volunteer.API.csproj" />
+  <Project Path="src/Volunteer.Application/Volunteer.Application.csproj" />
+  <Project Path="src/Volunteer.Domain/Volunteer.Domain.csproj" />
+  <Project Path="src/Volunteer.Infrastructure/Volunteer.Infrastructure.csproj" />
+</Solution>

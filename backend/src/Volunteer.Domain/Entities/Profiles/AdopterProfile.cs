@@ -1,3 +1,5 @@
+using Volunteer.Domain.ValueObjects;
+
 namespace Volunteer.Domain.Entities;
 
 public sealed class AdopterProfile

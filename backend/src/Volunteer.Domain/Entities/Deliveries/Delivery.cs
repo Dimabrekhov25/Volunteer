@@ -1,9 +1,18 @@
+using CSharpFunctionalExtensions;
 using Volunteer.Domain.Enums;
+using Volunteer.Domain.ValueObjects;
 
 namespace Volunteer.Domain.Entities;
 
 public sealed class Delivery
 {
+
+    private Delivery(string requirements, string notes)
+    {
+        Requirements = requirements;
+        Notes = notes;
+    }
+        
     public Guid Id { get; init; }
     public Guid AnimalId { get; init; }
     public Guid CreatedByUserId { get; init; }
@@ -19,14 +28,20 @@ public sealed class Delivery
     public DateTimeOffset? PickedUpAt { get; set; }
     public DateTimeOffset? DeliveredAt { get; set; }
     public List<DeliveryLeg> Legs { get; set; } = new();
-}
 
-public sealed class DeliveryLeg
-{
-    public int Index { get; set; }
-    public Location? FromLocation { get; set; }
-    public Location? ToLocation { get; set; }
-    public DeliveryStatus Status { get; set; } = DeliveryStatus.Created;
-    public DateTimeOffset? PickupTime { get; set; }
-    public DateTimeOffset? DropoffTime { get; set; }
+    public static Result<Delivery, string> Create(string requirements, string notes)
+    {
+        if (string.IsNullOrWhiteSpace(requirements))
+        {
+            return Result.Failure<Delivery,string>("requirements cannot be empty");
+        }
+        if (string.IsNullOrWhiteSpace(notes))
+        {
+            return Result.Failure<Delivery,string>("notes cannot be empty");
+        }
+
+        var Delivery = new Delivery(requirements, notes);
+        return Result.Success<Delivery,string>(Delivery);
+    }
+    
 }

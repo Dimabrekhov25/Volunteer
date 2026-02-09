@@ -1,4 +1,5 @@
 using Volunteer.Domain.Enums;
+using Volunteer.Domain.ValueObjects;
 
 namespace Volunteer.Domain.Entities;
 

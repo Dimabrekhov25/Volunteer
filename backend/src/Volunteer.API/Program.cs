@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Volunteer.Infrastructure.Persistence;
+
+using Volunteer.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.AddInfrastructure();
 
 var app = builder.Build();
 

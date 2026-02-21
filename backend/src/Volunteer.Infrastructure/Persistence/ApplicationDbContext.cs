@@ -1,24 +1,33 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Volunteer.Domain.Entities;
+using Volunteer.Domain.Entities.Animals;
+using Volunteer.Domain.Entities.Deliveries;
+using Volunteer.Domain.Entities.Documents;
+using Volunteer.Domain.Entities.Organizations;
+using Volunteer.Domain.Entities.Profiles;
+using Volunteer.Domain.Entities.Users;
 
 namespace Volunteer.Infrastructure.Persistence;
 
-public sealed class ApplicationDbContext(IConfiguration configuration) : DbContext
+public sealed class ApplicationDbContext : DbContext
 {
-   
-   
-   public DbSet<Users> Users => Set<Users>();
+   public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+   {
+   }
+
+   public DbSet<User> Users => Set<User>();
+   public DbSet<Animal> Animals => Set<Animal>();
+   public DbSet<AnimalPhoto> AnimalPhotos => Set<AnimalPhoto>();
+   public DbSet<Document> Documents => Set<Document>();
+   public DbSet<Organization> Organizations => Set<Organization>();
+   public DbSet<AdopterProfile> AdopterProfiles => Set<AdopterProfile>();
+   public DbSet<VolunteerProfile> VolunteerProfiles => Set<VolunteerProfile>();
+   public DbSet<Delivery> Deliveries => Set<Delivery>();
+   public DbSet<DeliveryLeg> DeliveryLegs => Set<DeliveryLeg>();
 
    
-   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-   {
-      optionsBuilder.UseNpgsql(configuration.GetConnectionString("Database"));
-      optionsBuilder.UseSnakeCaseNamingConvention();
-      optionsBuilder.UseLoggerFactory(CreateLoggerFactory( ));
-      
+   protected override void OnModelCreating(ModelBuilder modelBuilder)
+   { 
+      base.OnModelCreating(modelBuilder);
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
    }
-   
-   private ILoggerFactory CreateLoggerFactory()=> LoggerFactory.Create(builder => {builder.AddConsole();});
 }

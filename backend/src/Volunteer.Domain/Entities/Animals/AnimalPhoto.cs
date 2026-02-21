@@ -1,8 +1,8 @@
-namespace Volunteer.Domain.Entities;
+using Volunteer.Domain.Entities;
 
-public class AnimalPhoto
+namespace Volunteer.Domain.Entities.Animals;
+
+public class AnimalPhoto : BaseEntity
 {
-    public Guid Id { get; set; }
-    
     public string Path { get; set; } = string.Empty;
 }

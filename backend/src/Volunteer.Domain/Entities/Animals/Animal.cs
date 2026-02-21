@@ -1,13 +1,17 @@
+using Volunteer.Domain.Entities;
+using Volunteer.Domain.Entities.Documents;
+using Volunteer.Domain.Entities.Profiles;
 using Volunteer.Domain.Enums;
 using Volunteer.Domain.ValueObjects;
 
-namespace Volunteer.Domain.Entities;
+namespace Volunteer.Domain.Entities.Animals;
 
-public sealed class Animal
+public sealed class Animal : BaseEntity
 {
-    public Guid Id { get; init; }
     public string Name { get; set; } = string.Empty;
     public string Species { get; set; } = string.Empty;
+    public Guid? AdopterProfileId { get; set; }      
+    public AdopterProfile? AdopterProfile { get; set; }
     public string? Breed { get; set; }
     public AnimalSex Sex { get; set; } = AnimalSex.Unknown;
     public DateOnly? BirthDate { get; set; }

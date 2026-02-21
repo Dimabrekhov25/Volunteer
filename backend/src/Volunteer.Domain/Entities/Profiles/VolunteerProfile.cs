@@ -1,12 +1,14 @@
+using Volunteer.Domain.Entities;
+using Volunteer.Domain.Entities.Users;
 using Volunteer.Domain.Enums;
 using Volunteer.Domain.ValueObjects;
 
-namespace Volunteer.Domain.Entities;
+namespace Volunteer.Domain.Entities.Profiles;
 
-public sealed class VolunteerProfile
+public sealed class VolunteerProfile : BaseEntity
 {
-    public Guid Id { get; init; }
     public Guid UserId { get; init; }
+    public User User { get; set; } = null!;
     public VolunteerVerificationStatus VerificationStatus { get; set; } = VolunteerVerificationStatus.Pending;
     public VolunteerAvailabilityStatus AvailabilityStatus { get; set; } = VolunteerAvailabilityStatus.Offline;
     public VehicleType? VehicleType { get; set; }

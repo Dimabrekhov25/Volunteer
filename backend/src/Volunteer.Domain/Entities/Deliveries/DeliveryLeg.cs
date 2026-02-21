@@ -1,7 +1,7 @@
 using Volunteer.Domain.Enums;
 using Volunteer.Domain.ValueObjects;
 
-namespace Volunteer.Domain.Entities;
+namespace Volunteer.Domain.Entities.Deliveries;
 
 public sealed class DeliveryLeg
 {

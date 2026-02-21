@@ -1,10 +1,11 @@
 using CSharpFunctionalExtensions;
+using Volunteer.Domain.Entities;
 using Volunteer.Domain.Enums;
 using Volunteer.Domain.ValueObjects;
 
-namespace Volunteer.Domain.Entities;
+namespace Volunteer.Domain.Entities.Deliveries;
 
-public sealed class Delivery
+public sealed class Delivery : BaseEntity
 {
 
     private Delivery(string requirements, string notes)
@@ -13,7 +14,6 @@ public sealed class Delivery
         Notes = notes;
     }
         
-    public Guid Id { get; init; }
     public Guid AnimalId { get; init; }
     public Guid CreatedByUserId { get; init; }
     public Guid? AssignedVolunteerId { get; set; }
@@ -24,7 +24,6 @@ public sealed class Delivery
     public string? Requirements { get; set; }
     public DeliveryStatus Status { get; set; } = DeliveryStatus.Created;
     public string? Notes { get; set; }
-    public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
     public DateTimeOffset? PickedUpAt { get; set; }
     public DateTimeOffset? DeliveredAt { get; set; }
     public List<DeliveryLeg> Legs { get; set; } = new();

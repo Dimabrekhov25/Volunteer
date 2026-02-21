@@ -1,11 +1,11 @@
+using Volunteer.Domain.Entities;
 using Volunteer.Domain.Enums;
 using Volunteer.Domain.ValueObjects;
 
-namespace Volunteer.Domain.Entities;
+namespace Volunteer.Domain.Entities.Organizations;
 
-public sealed class Organization
+public class Organization : BaseEntity
 {
-    public Guid Id { get; init; }
     public string Name { get; set; } = string.Empty;
     public Contact? Contact { get; set; }
     public Location? Address { get; set; }

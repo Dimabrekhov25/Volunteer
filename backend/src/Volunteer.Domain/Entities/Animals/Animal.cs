@@ -1,4 +1,5 @@
 using Volunteer.Domain.Entities;
+using Volunteer.Domain.Entities.Deliveries;
 using Volunteer.Domain.Entities.Documents;
 using Volunteer.Domain.Entities.Profiles;
 using Volunteer.Domain.Enums;
@@ -12,6 +13,9 @@ public sealed class Animal : BaseEntity
     public string Species { get; set; } = string.Empty;
     public Guid? AdopterProfileId { get; set; }      
     public AdopterProfile? AdopterProfile { get; set; }
+    public Guid VolunteerProfileId  { get; set; }
+    public VolunteerProfile VolunteerProfile { get; set; }
+    public List<DeliveryAnimal> DeliveryAnimals { get; set; } = new();
     public string? Breed { get; set; }
     public AnimalSex Sex { get; set; } = AnimalSex.Unknown;
     public DateOnly? BirthDate { get; set; }

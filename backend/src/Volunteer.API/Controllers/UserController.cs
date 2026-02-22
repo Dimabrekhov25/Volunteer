@@ -1,5 +1,8 @@
 using CSharpFunctionalExtensions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Volunteer.Application.Users.Commands.CreateUser;
+using Volunteer.Application.Users.DTOs;
 using Volunteer.Domain.Entities;
 using Volunteer.Domain.Entities.Users;
 
@@ -7,33 +10,15 @@ namespace Volunteer.API.Controllers;
 
 
 
-[ApiController]
-[Route("[controller]")]
-
-public class UserController : ControllerBase
+public class UserController(IMediator mediator) : BaseController
 {
-    [HttpGet]
-    public ActionResult Get(string email, string firstName, string lastName, string phoneNumber)
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        [FromBody] CreateUserCommand createUserCommand,
+        CancellationToken cancellationToken)
     {
-        var userResult = Domain.Entities.Users.User.Create(email, firstName, lastName, phoneNumber);
-        if (userResult.IsFailure)
-        {
-            return ValidationProblem();
-        }
-        var result = Save(userResult.Value);
-        if (result.IsFailure)
-            return BadRequest(result.Error);
-        
-        return Ok(result);
+        var userResult = await mediator.Send(createUserCommand, cancellationToken);
+        return OkResult(userResult);
     }
-    
-    public Result Save(User user)
-    {
-        if (true)
-        {
-            return Result.Success();
-        }
-
-        return Result.Failure("User is empty ");
-    }
+  
 } 

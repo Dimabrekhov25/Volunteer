@@ -23,6 +23,7 @@ public sealed class ApplicationDbContext : DbContext
    public DbSet<VolunteerProfile> VolunteerProfiles => Set<VolunteerProfile>();
    public DbSet<Delivery> Deliveries => Set<Delivery>();
    public DbSet<DeliveryLeg> DeliveryLegs => Set<DeliveryLeg>();
+   public DbSet<DeliveryAnimal> DeliveryAnimals => Set<DeliveryAnimal>();
 
    
    protected override void OnModelCreating(ModelBuilder modelBuilder)

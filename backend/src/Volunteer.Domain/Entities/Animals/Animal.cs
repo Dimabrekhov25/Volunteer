@@ -11,7 +11,9 @@ public sealed class Animal : BaseEntity
     public string Name { get; set; } = string.Empty;
     public string Species { get; set; } = string.Empty;
     public Guid? AdopterProfileId { get; set; }      
-    public AdopterProfile? AdopterProfile { get; set; }
+    public AdopterProfile? AdopterProfile { get; set; } 
+    public Guid VolunteerProfileId { get; set;}
+    public VolunteerProfile VolunteerProfile { get; set; }
     public string? Breed { get; set; }
     public AnimalSex Sex { get; set; } = AnimalSex.Unknown;
     public DateOnly? BirthDate { get; set; }

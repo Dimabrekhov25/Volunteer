@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
+using Volunteer.API.Extensions;
 using Volunteer.Infrastructure.Persistence;
-
 using Volunteer.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,17 +8,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(Volunteer.Application.Users.Commands.CreateUser.CreateUserCommand).Assembly));
+builder.Services.ConfigureVersioning();
+builder.Services.AddApiVersioning();
 builder.AddInfrastructure();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
+
 
 var summaries = new[]
 {

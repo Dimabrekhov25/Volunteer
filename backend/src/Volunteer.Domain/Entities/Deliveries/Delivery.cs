@@ -24,6 +24,7 @@ public sealed class Delivery : BaseEntity
     public string? Requirements { get; set; }
     public DeliveryStatus Status { get; set; } = DeliveryStatus.Created;
     public string? Notes { get; set; }
+    public List<DeliveryAnimal> DeliveryAnimals { get; set; } = new();
     public DateTimeOffset? PickedUpAt { get; set; }
     public DateTimeOffset? DeliveredAt { get; set; }
     public List<DeliveryLeg> Legs { get; set; } = new();

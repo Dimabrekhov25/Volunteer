@@ -18,10 +18,10 @@ public sealed class User : BaseEntity
         Phone =  phoneNumber;
     }
     
-    public string Email { get; private set; } = string.Empty;
-    public string Phone { get;private set; } = string.Empty;
-    public string FirstName { get; private set; } = string.Empty;
-    public string LastName { get; private set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string FirstName { get;  set; } = string.Empty;
+    public string LastName { get;  set; } = string.Empty;
     public UserStatus Status { get; set; } = UserStatus.Active;
     public List<UserRole> Roles { get; set; } = new();
     public DateTimeOffset? LastLoginAt { get; set; }

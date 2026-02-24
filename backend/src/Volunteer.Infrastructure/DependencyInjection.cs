@@ -2,7 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Volunteer.Application.Common.Interfaces;
 using Volunteer.Infrastructure.Persistence;
+using Volunteer.Infrastructure.Repositories;
 
 namespace Volunteer.Infrastructure;
 
@@ -15,6 +17,9 @@ public static class DependencyInjection
         {
             options.UseSnakeCaseNamingConvention();
         });
+
+        builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        builder.Services.AddScoped<IUsersRepositories, UserRepositories>();
     }
 
     public static IHostApplicationBuilder AddNpgsqlDbContext<TContext>(

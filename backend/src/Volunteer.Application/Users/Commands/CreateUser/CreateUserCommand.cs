@@ -11,4 +11,4 @@ public record CreateUserCommand(
     string LastName,
     UserStatus Status, 
     IReadOnlyCollection<UserRole> Roles,
-    DateTimeOffset? LastLoginAt ) : IRequest<UserDto>;
+    DateTimeOffset? LastLoginAt ) : IRequest<Guid>;

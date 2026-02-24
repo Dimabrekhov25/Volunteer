@@ -17,7 +17,10 @@ public class UserController(IMediator mediator) : BaseController
         [FromBody] CreateUserCommand createUserCommand,
         CancellationToken cancellationToken)
     {
-        var userResult = await mediator.Send(createUserCommand, cancellationToken);
+        var userResult = await mediator.Send(
+            createUserCommand,
+            cancellationToken);
+        
         return OkResult(userResult);
     }
   

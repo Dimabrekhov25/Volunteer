@@ -1,5 +1,7 @@
 using System.Reflection;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Volunteer.Application.Common.Behaviors;
 
 namespace Volunteer.Application;
 
@@ -12,9 +14,10 @@ public static class DependencyInjection
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(assembly);
-           
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
-   
+        
+        services.AddValidatorsFromAssembly(assembly);
         
         return services;
     }

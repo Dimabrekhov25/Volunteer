@@ -2,6 +2,7 @@ using Scalar.AspNetCore;
 using Volunteer.API.Extensions;
 using Volunteer.Infrastructure.Persistence;
 using Volunteer.Infrastructure;
+using Volunteer.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(Volunteer.Application.Users.Commands.CreateUser.CreateUserCommand).Assembly));
+builder.Services.AddApplication();
 builder.Services.ConfigureVersioning();
 builder.Services.AddApiVersioning();
 builder.AddInfrastructure();
